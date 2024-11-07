@@ -136,3 +136,46 @@ else
 return searchRec(node->right, playerID);
 }
 }
+
+
+bool deleteNode(string playerID) 
+{
+root = deleteRec(root, playerID);
+return root != nullptr;
+}
+
+PlayerNode* deleteRec(PlayerNode *&node, const string& playerID) 
+{
+if (node == nullptr) 
+return nullptr;
+if (playerID < node->player.playerID) 
+{
+node->left = deleteRec(node->left, playerID);
+} 
+else if (playerID > node->player.playerID) 
+{
+node->right = deleteRec(node->right, playerID);
+} 
+else 
+{
+if (node->left == nullptr) 
+{
+PlayerNode *temp = node;
+node = node->right;
+delete temp;
+} 
+else if (node->right == nullptr) 
+{
+PlayerNode *temp = node;
+node = node->left;
+delete temp;
+} 
+else 
+{
+PlayerNode *temp = minNode(node->right);
+node->player = temp->player;
+node->right = deleteRec(node->right, temp->player.playerID);
+}
+}
+return node;
+}
