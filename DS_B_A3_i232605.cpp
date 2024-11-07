@@ -299,3 +299,117 @@ cout << "Player not found, cannot edit entry!" << endl;
 }
 }
 };
+
+class GameTree {
+public:
+GameNode* root;
+
+GameTree() : root(nullptr) 
+{}
+
+bool insert(GameNode *newNode) 
+{
+return insertRec(root, newNode);
+}
+
+bool insertRec(GameNode *&node, GameNode *newNode) 
+{
+if (node == nullptr) 
+{
+node = newNode;
+return true;
+}
+if (newNode->game.gameID == node->game.gameID) 
+{
+cout << "game id already exists" << endl;
+return false;
+}
+if (newNode->game.gameID < node->game.gameID) 
+{
+return insertRec(node->left, newNode);
+} 
+else 
+{
+return insertRec(node->right, newNode);
+}
+}
+
+GameNode* search(const string& gameID) 
+{
+return searchRec(root, gameID);
+}
+
+GameNode* searchRec(GameNode *node, const string& gameID) 
+{
+if (node == nullptr || node->game.gameID == gameID) 
+{
+return node;
+}
+if (gameID < node->game.gameID) 
+{
+return searchRec(node->left, gameID);
+} 
+else 
+{
+return searchRec(node->right, gameID);
+}
+}
+
+bool deleteNode(string gameID) 
+{
+root = deleteRec(root, gameID);
+return root != nullptr;
+}
+
+GameNode* deleteRec(GameNode *&node, const string& gameID) 
+{
+if (node == nullptr) 
+return nullptr;
+if (gameID < node->game.gameID) 
+{
+node->left = deleteRec(node->left, gameID);
+} 
+else if (gameID > node->game.gameID) 
+{
+node->right = deleteRec(node->right, gameID);
+} 
+else 
+{
+if (node->left == nullptr) 
+{
+GameNode *temp = node;
+node = node->right;
+delete temp;
+} 
+else if (node->right == nullptr) 
+{
+GameNode *temp = node;
+node = node->left;
+delete temp;
+} 
+else 
+{
+GameNode *temp = minNode(node->right);
+node->game = temp->game;
+node->right = deleteRec(node->right, temp->game.gameID);
+}
+}
+return node;
+}
+
+GameNode* minNode(GameNode *node) 
+{
+while (node->left != nullptr) node = node->left;
+return node;
+}
+
+void preorderTraversal(GameNode *node) 
+{
+if (node == nullptr) 
+return;
+cout << node->game.gameID << "," << node->game.name << endl;
+preorderTraversal(node->left);
+preorderTraversal(node->right);
+}
+};
+
