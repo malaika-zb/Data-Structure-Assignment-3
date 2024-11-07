@@ -256,3 +256,28 @@ return leftLayer;
 return getLayerRec(node->right, playerID, currentLayer + 1);
 }
 
+void showPath(const string& playerID) 
+{
+showPathRec(root, playerID);
+}
+
+void showPathRec(PlayerNode *node, const string& playerID) 
+{
+if (node == nullptr) 
+return;
+cout << node->player.playerID << " -> ";
+if (node->player.playerID == playerID) 
+{
+cout << "Found!" << endl;
+return;
+}
+if (playerID < node->player.playerID) 
+{
+showPathRec(node->left, playerID);
+} 
+else 
+{
+showPathRec(node->right, playerID);
+}
+}
+
