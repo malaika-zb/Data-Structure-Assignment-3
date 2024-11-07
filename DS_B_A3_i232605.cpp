@@ -59,3 +59,14 @@ GamePlayed* gamePlayedHead;
 Player() : playerID(""), name(""), phoneNo(""), email(""), password(""), gamePlayedHead(nullptr) 
 {}
 };
+
+class PlayerNode 
+{
+public:
+Player player;
+PlayerNode* left;
+PlayerNode* right;
+
+PlayerNode(Player p) : player(p), left(nullptr), right(nullptr) 
+{}
+};
