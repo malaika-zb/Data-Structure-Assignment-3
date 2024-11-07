@@ -45,3 +45,17 @@ int downloads;
 
 Game() : gameID(""), name(""), developer(""), publisher(""), fileSizeInGBs(0.0), downloads(0) {}
 };
+
+class Player 
+{
+public:
+string playerID;
+string name;
+string phoneNo;
+string email;
+string password;
+GamePlayed* gamePlayedHead;
+
+Player() : playerID(""), name(""), phoneNo(""), email(""), password(""), gamePlayedHead(nullptr) 
+{}
+};
