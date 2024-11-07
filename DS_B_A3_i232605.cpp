@@ -80,3 +80,38 @@ GameNode* right;
 
 GameNode(Game g) : game(g), left(nullptr), right(nullptr) {}
 };
+
+class PlayerTree 
+{
+public:
+PlayerNode* root;
+
+PlayerTree() : root(nullptr) 
+{}
+
+bool insert(PlayerNode *newNode) 
+{
+return insertRec(root, newNode);
+}
+
+bool insertRec(PlayerNode *&node, PlayerNode *newNode) 
+{
+if (node == nullptr) 
+{
+node = newNode;
+return true;
+}
+if (newNode->player.playerID == node->player.playerID) 
+{
+cout << "player id doesnt exist" << endl;
+return false;
+}
+if (newNode->player.playerID < node->player.playerID) 
+{
+return insertRec(node->left, newNode);
+} 
+else 
+{
+return insertRec(node->right, newNode);
+}
+}
