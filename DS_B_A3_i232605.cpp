@@ -208,3 +208,16 @@ file.close();
 }
 
 
+void preorderTraversalToFile(PlayerNode *node, ofstream &file) 
+{
+if (node == nullptr) 
+return;
+file << node->player.playerID << "," << node->player.name << endl;
+preorderTraversalToFile(node->left, file);
+preorderTraversalToFile(node->right, file);
+}
+
+void showLayers(int n) 
+{
+showLayersRec(root, 1, n);
+}
