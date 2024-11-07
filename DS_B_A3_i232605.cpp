@@ -115,3 +115,24 @@ else
 return insertRec(node->right, newNode);
 }
 }
+
+PlayerNode* search(const string& playerID) 
+{
+return searchRec(root, playerID);
+}
+
+PlayerNode* searchRec(PlayerNode *node, const string& playerID) 
+{
+if (node == nullptr || node->player.playerID == playerID) 
+{
+return node;
+}
+if (playerID < node->player.playerID) 
+{
+return searchRec(node->left, playerID);
+} 
+else 
+{
+return searchRec(node->right, playerID);
+}
+}
