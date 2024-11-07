@@ -221,3 +221,19 @@ void showLayers(int n)
 {
 showLayersRec(root, 1, n);
 }
+
+void showLayersRec(PlayerNode *node, int currentLayer, int maxLayers) 
+{
+if (node == nullptr) 
+return;
+if (currentLayer <= maxLayers) 
+{
+cout << "Layer " << currentLayer << ": " << node->player.playerID << "," << node->player.name << endl;
+showLayersRec(node->left, currentLayer + 1, maxLayers);
+showLayersRec(node->right, currentLayer + 1, maxLayers);
+} 
+else 
+{
+cout << "Layer limit was reached, can’t go further." << endl;
+}
+}
