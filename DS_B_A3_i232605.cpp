@@ -70,3 +70,13 @@ PlayerNode* right;
 PlayerNode(Player p) : player(p), left(nullptr), right(nullptr) 
 {}
 };
+
+class GameNode 
+{
+public:
+Game game;
+GameNode* left;
+GameNode* right;
+
+GameNode(Game g) : game(g), left(nullptr), right(nullptr) {}
+};
