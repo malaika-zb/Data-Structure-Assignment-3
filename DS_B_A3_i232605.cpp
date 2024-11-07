@@ -195,3 +195,16 @@ preorderTraversal(node->left);
 preorderTraversal(node->right);
 }
 
+void saveToFile(const string& filename) 
+{
+ofstream file(filename);
+if (!file) 
+{
+cout << "error opening file" << endl;
+return;
+}
+preorderTraversalToFile(root, file);
+file.close();
+}
+
+
