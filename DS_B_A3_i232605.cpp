@@ -413,3 +413,69 @@ preorderTraversal(node->right);
 }
 };
 
+void readPlayersFromFile(PlayerTree& playerTree, const string& filename) 
+{
+ifstream file(filename);
+if (!file) 
+{
+cout << "error opening file" << endl;
+return;
+}
+string line;
+while (getline(file, line)) 
+{
+stringstream ss(line);
+string playerID, name, phone, email, password;
+getline(ss, playerID, ',');
+getline(ss, name, ',');
+getline(ss, phone, ',');
+getline(ss, email, ',');
+getline(ss, password, ',');
+
+Player player;
+player.playerID = playerID;
+player.name = name;
+player.phoneNo = phone;
+player.email = email;
+player.password = password;
+
+playerTree.insert(new PlayerNode(player));
+}
+file.close();
+}
+
+void readGamesFromFile(GameTree& gameTree, const string& filename) 
+{
+ifstream file(filename);
+if (!file) 
+{
+cout << "error opening file" << endl;
+return;
+}
+string line;
+while (getline(file, line)) 
+{
+stringstream ss(line);
+string gameID, name, developer, publisher;
+float fileSize;
+int downloads;
+getline(ss, gameID, ',');
+getline(ss, name, ',');
+getline(ss, developer, ',');
+getline(ss, publisher, ',');
+ss >> fileSize;
+ss.ignore();  
+ss >> downloads;
+
+Game game;
+game.gameID = gameID;
+game.name = name;
+game.developer = developer;
+game.publisher = publisher;
+game.fileSizeInGBs = fileSize;
+game.downloads = downloads;
+
+gameTree.insert(new GameNode(game));
+}
+file.close();
+}
