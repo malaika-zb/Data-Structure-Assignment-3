@@ -32,3 +32,16 @@ int downloads;
 
 Game() : gameID(""), name(""), developer(""), publisher(""), fileSizeInGBs(0.0), downloads(0) {}
 };
+
+class Game 
+{
+public:
+string gameID;
+string name;
+string developer;
+string publisher;
+float fileSizeInGBs;
+int downloads;
+
+Game() : gameID(""), name(""), developer(""), publisher(""), fileSizeInGBs(0.0), downloads(0) {}
+};
