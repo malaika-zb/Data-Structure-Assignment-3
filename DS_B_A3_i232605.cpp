@@ -179,3 +179,19 @@ node->right = deleteRec(node->right, temp->player.playerID);
 }
 return node;
 }
+
+PlayerNode* minNode(PlayerNode *node) 
+{
+while (node->left != nullptr) node = node->left;
+return node;
+}
+
+void preorderTraversal(PlayerNode *node) 
+{
+if (node == nullptr) 
+return;
+cout << node->player.playerID << "," << node->player.name << endl;
+preorderTraversal(node->left);
+preorderTraversal(node->right);
+}
+
