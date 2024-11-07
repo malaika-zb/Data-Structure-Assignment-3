@@ -281,3 +281,21 @@ showPathRec(node->right, playerID);
 }
 }
 
+void editEntry(const string& oldID, PlayerNode* newData) 
+{
+if (deleteNode(oldID)) 
+{
+if (insert(newData)) 
+{
+cout << "Entry edited and repositioned in the tree." << endl;
+} 
+else 
+{
+cout << "Failed to insert the new player data." << endl;
+}
+} else 
+{
+cout << "Player not found, cannot edit entry!" << endl;
+}
+}
+};
