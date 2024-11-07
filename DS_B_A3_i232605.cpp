@@ -237,3 +237,22 @@ else
 cout << "Layer limit was reached, can’t go further." << endl;
 }
 }
+
+
+int getLayer(const string& playerID) 
+{
+return getLayerRec(root, playerID, 1);
+}
+
+int getLayerRec(PlayerNode *node, const string& playerID, int currentLayer) 
+{
+if (node == nullptr) 
+return -1;
+if (node->player.playerID == playerID) 
+return currentLayer;
+int leftLayer = getLayerRec(node->left, playerID, currentLayer + 1);
+if (leftLayer != -1) 
+return leftLayer;
+return getLayerRec(node->right, playerID, currentLayer + 1);
+}
+
